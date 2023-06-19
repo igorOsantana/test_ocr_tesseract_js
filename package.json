@@ -1,0 +1,19 @@
+{
+  "name": "ocr_test",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pdf-parse": "^1.1.1",
+    "pdftopic": "^0.2.0",
+    "sharp": "^0.31.3",
+    "tesseract.js": "^4.0.2"
+  }
+}

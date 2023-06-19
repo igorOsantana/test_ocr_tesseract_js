@@ -1,0 +1,6 @@
+node_modules
+tmp/*
+tmp_cnh_tests
+results/*
+results_cnh_tests
+assets/files/*
