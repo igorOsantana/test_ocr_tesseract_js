@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { TMP_PATH } from "../constants";
+import { TMP_PATH } from "../constants/index.js";
 
 export async function processImage(image, fileName) {
   try {
@@ -11,5 +11,6 @@ export async function processImage(image, fileName) {
       .toFile(outputPath);
   } catch (err) {
     console.error(err.message);
+    throw err
   }
 }

@@ -4,7 +4,7 @@ import { convertPdf, verifyIfIsPdf } from '../src/pdf/index.js';
 import { FILES_PATH, RESULT_PATH } from './constants/index.js';
 import { processImage } from './img/index.js';
 
-exec('cnh_files/cnhtest2.png');
+exec('cnh6.pdf');
 
 async function exec(fileName) {
   const filePaths = await processFile(fileName);
