@@ -5,7 +5,7 @@ export async function useOCR(filePath) {
   await worker.loadLanguage('por');
   await worker.initialize('por');
   await worker.setParameters({
-    tessedit_pageseg_mode: PSM.SPARSE_TEXT,
+    tessedit_pageseg_mode: PSM.AUTO,
   });
 
   const result = await worker.recognize(filePath);

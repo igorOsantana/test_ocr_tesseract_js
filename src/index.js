@@ -4,7 +4,7 @@ import { convertPdf, verifyIfIsPdf } from '../src/pdf/index.js';
 import { FILES_PATH, RESULT_PATH } from './constants/index.js';
 import { processImage } from './img/index.js';
 
-exec('cnh6.pdf');
+exec('newCamila.png');
 
 async function exec(fileName) {
   const filePaths = await processFile(fileName);
@@ -42,7 +42,7 @@ async function getResult(filePath) {
   const result = await useOCR(filePath);
 
   result.data.words
-    .filter(({ confidence }) => confidence > 75)
+    //.filter(({ confidence }) => confidence > 75)
     .forEach((word) => {
       text += word.text + '\n';
     });
@@ -53,6 +53,28 @@ async function getResult(filePath) {
 function saveResult(result) {
   const txtFileName = result.fileName.replace(/\..{3,4}$/, '.txt');
   const path = RESULT_PATH + txtFileName;
+  const output = result.text.replace(/\s/g, '\n');
+  let name = ''
+  let doc = ''
+  let isName = false
+  output.split('\n').forEach((line) => {
+    if (line.includes('HABILITAÇÃO'))
+      isName = true
+    else if (isName && (line.trim() !== '')) {
+      if (line.replace(/([A-Za-z])*/g, '') !== '' || line.length < 2) {
+        isName = false
+      } else {
+        name += line + ' '
+      }
+    }
+    else if (line.match(/\D*\d{3}\.\d{3}\.\d{3}.\d{2}.*/)) {
+      doc = line.replace(/\D*(\d{3})\.(\d{3})\.(\d{3}).(\d{2}).*/, '$1$2$3$4')
+    }
+  })
+  console.log({
+    name,
+    doc,
+  });
 
   fs.writeFileSync(path, result.text.replace(/\s/g, '\n'));
 }
